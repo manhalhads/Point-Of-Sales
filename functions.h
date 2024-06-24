@@ -1,8 +1,8 @@
 #pragma once
-#include <iostream>
-#include <iomanip>
-#include <string>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <string>
 using namespace std;
 int count_lines();
 string *splitstring(string str);
@@ -21,5 +21,4 @@ string *search_description(string description);
 string *search_price(string price);
 string *search_quantity(string quantity);
 void display3(string **arr, int size);
-void display_des_price (string sku);
-
+void display_des_price(string sku);
