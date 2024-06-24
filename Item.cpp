@@ -1,4 +1,4 @@
-#include "Item.h"
+#include "Items.h"
 Item :: Item() {
     itemsku = "0";
     description = "nothing";
@@ -20,7 +20,7 @@ Item :: Item(const  Item &i1)
   description = i1.description;
   price = i1.price;
   availablequantity = i1. availablequantity;
-  
+
 }
 void Item ::  set_sku(string sku){itemsku = sku;}
 void Item :: set_description(string des){description = des;}
@@ -40,9 +40,9 @@ void Item ::  display() {
     cout << "Creation date: " << creationdate << endl;
   }
  void Item :: display3(){
-   
+
    int des = description.size() + 6;
-  
+
   int len = des + 34;
   for (int i = 0; i < len; i++)
     cout << "-";
@@ -57,7 +57,7 @@ void Item ::  display() {
   cout << left << setw(10) << itemsku << left << setw(des+6) << description;
   cout << left << setw(8) << price << left << setw(10) << availablequantity;
   cout << endl;
-  
+
   for (int i = 0; i < len; i++)
     cout << "-";
   cout << endl;
@@ -98,27 +98,27 @@ void Item ::search_item() {
         {
           Item c1(quantity[0], quantity[1], quantity[2], quantity[3]);
           c1.display3();
-    
+
         }
       } else 
       {
           Item  c1(price[0], price[1], price[2], price[3]);
         c1.display3();
-       
+
       }
     } else 
     {
       Item c1(description[0], description[1], description[2], description[3]);
-    //  cout << "des"<< endl;
+    
       c1.display3();
-      
+
     }
   } else 
   {
-   
+
   Item c1(sku[0], sku[1], sku[2], sku[3]);
   c1.display3();
-    
+
   }
 
 
@@ -127,7 +127,7 @@ void Item ::search_item() {
   delete[] description;
   delete[] price;
   delete[] quantity;
- 
+
 }
 void Item :: delete_item() {
   string a;
@@ -202,7 +202,7 @@ void Item :: update_item() {
     arr[i] = a + ',' + b;
     if (a == itemsku) {
       arr[i] = itemsku + c + description + c + price + c + availablequantity;
-      
+
     }
   }
   fin.close();
@@ -212,7 +212,7 @@ void Item :: update_item() {
 
   for (int i = 0; i < lines; i++) {
     fout << arr[i] << endl;
-     
+
   }
   cout << "Item information successfully saved. " << endl;
 }
@@ -241,9 +241,9 @@ void Item :: update_qty(double qty) {
       int oldqty = stoi(temp[2]);
       int newqty = oldqty - qty;
       string quantity = to_string(newqty);
-      
+
       arr[i] = itemsku + c + description + c + price + c + quantity;
-     
+
     }
   }
   fin.close();
@@ -256,7 +256,7 @@ void Item :: update_qty(double qty) {
 
   }
   delete [] temp;
- 
+
 }
 void Item :: add_back_qty(double qty){
   string a, b;
@@ -276,9 +276,9 @@ void Item :: add_back_qty(double qty){
       int oldqty = stoi(temp[2]);
       int newqty = oldqty + qty;
       string quantity = to_string(newqty);
-      
+
       arr[i] = itemsku + c + description + c + price + c + quantity;
-     
+
     }
   }
   fin.close();
@@ -292,6 +292,6 @@ void Item :: add_back_qty(double qty){
   }
   delete [] temp;
   fout.close ();
- 
+
 }
 double Item :: get_price1() { return stod(price);}
