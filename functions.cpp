@@ -1,3 +1,4 @@
+
 #include "functions.h"
 int count_lines() {        //counts number of lines in customers file
   int count = 0;
@@ -36,8 +37,8 @@ string *splitstring(string str) {           //This function takes a string that 
 }
 string *search_cnic(string cnic) {         //This function takes a cnic and searches the customer file for that cnic.
                                           //If found,it returns an array containing the information of the customer with that cnic.
-                                           
-                                           
+
+
   string *arr = new string[5];
   string *temp = new string[4];
   string a;
@@ -208,63 +209,6 @@ int no_of_occur_of_type(string type) {   //returns no. of customers with type pa
   delete[] temp;
   return count;
 }
-string **all_occur_of_type(string type) {   // this function returns a double pointer of all customers that have the passed type
-  int n = no_of_occur_of_type(type);
-
-cout << "n: "<< n << endl;
-  string **arr = new string *[n];
-
-  for (int i = 0; i < n; i++)
-    arr[i] = new string[5];
-
-  string a, b;
-  string *temp;
-  string *temp2;
-  int i = 0;
-
-  fstream fin;
-  fin.open("Customers.txt");
-  while (!fin.eof()) {
-    getline(fin, a, ',');
-    getline(fin, b);
-    temp = splitstring(b);
-    temp2 = search_type(temp[3]);
-    if (temp[3] == type) {
-     for (int i=0;i<n;i++)
-    { 
-      for (int j=1;j<5;j++)
-      {
-        arr[i][0] = a;
-        arr[i][j] = temp2[j-1];
-       cout << arr[i][j] << endl;
-
-      } 
-    }
-  }
-}
-      // arr[i][0] = a;
-      // for (int j = 1; j < 5; j++)
-      //   {arr[i][j] = temp[j - 1];
-      //for (int x = 0; x < 5; x++)
-       // cout << "[" << i << "][" << x << "] = " << arr[i][x] << endl;
-         //}
-      // if (i == n)
-      //   break;
-    
-  
-  //   for (int i=0;i<n;i++)
-  //     {
-  //       for (int j=0;j<5;j++)
-  //         {
-  //          cout << "[" << i << "][" << j << "] = " << arr[i][j] << endl;
-  //         }
-  //     }
-  // }
-  delete[] temp;
-  delete [] temp2;
-
-  return arr;
-}
 string get_sales_limit(string type) {   //gets saleslimit for a customer type
   string saleslimit;
   if (type == "Silver")
@@ -290,7 +234,7 @@ int count_entries() {           //Counts the number of lines in items file
   return count;
 }
 string *splitstringitem(string str) {     //This function takes a string with three phrases separated by commas. It returns an array of those three phrases separated without commas or spaces
-  
+
   string *arr = new string[3];
   string price;
   int size = str.size();
@@ -306,8 +250,8 @@ string *splitstringitem(string str) {     //This function takes a string with th
 }
 string *search_sku(string sku) {        //This function takes an itemsku and searches the items file for that type.
                                           //If found,it returns an array containing the information of the item with that sku
- 
-  
+
+
   string *arr = new string[4];
   string *temp = new string[3];
   string a;
@@ -322,6 +266,7 @@ string *search_sku(string sku) {        //This function takes an itemsku and sea
     if (a == sku) {
       arr[0] = a;
       temp = splitstringitem(b);
+      
 
       for (int i = 1; i < 4; i++)
         arr[i] = temp[i - 1];
@@ -333,14 +278,14 @@ string *search_sku(string sku) {        //This function takes an itemsku and sea
     }
   }
   delete[] temp;
+  
   for (int i = 0; i < 4; i++)
     arr[i] = "x";
-
   return arr;
 }
 string *search_description(string description) {    //This function takes an item's description and searches the items file for that description.
                                           //If found,it returns an array containing the information of the item with that description
- 
+
   string *arr = new string[4];
   string *temp;
   string a;
@@ -354,7 +299,7 @@ string *search_description(string description) {    //This function takes an ite
     temp = splitstringitem(b);
     if (temp[0] == description) {
       arr[0] = a;
-       cout << temp[0] << endl;
+       
       temp = splitstringitem(b);
       for (int i = 1; i < 4; i++)
         arr[i] = temp[i - 1];
