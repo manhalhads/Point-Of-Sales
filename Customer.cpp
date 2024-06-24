@@ -1,5 +1,6 @@
-#include "Customer.h"
-void Customer ::set_saleslimit (string type){
+#include "Customers.h"
+void Customer ::set_saleslimit (string type)
+{
   if (type == "Silver")
    saleslimit = 40000;
   else if (type == "Gold")
@@ -15,7 +16,7 @@ Customer ::Customer() {
   type = "no type";
   amountpayable = 0;
   saleslimit = 40000;
-  
+
 }
 Customer ::Customer(string CNIC, string name, string email, string phone,
                     string type) {
@@ -26,7 +27,7 @@ Customer ::Customer(string CNIC, string name, string email, string phone,
   this->type = type;  
   this->amountpayable = 0;
   set_saleslimit(type);
-  
+
 }
 string Customer ::get_CNIC() { return CNIC; }
 string Customer ::get_name() { return name; }
@@ -57,9 +58,15 @@ void Customer ::add_new_customer() {
   if (fout.is_open()) {
     fout << CNIC << ", ";
     fout << name << ", " << email << ", " << phone << ", " << type << endl;
+     cout << "Customer information successfully saved." << endl;
+  }
+  else
+  {
+    cout << "Error opening file." << endl;
   }
   fout.close();
-  cout << "Customer information successfully saved." << endl;
+ 
+
 }
 void Customer ::display1() {
   int size_email = email.size() + 2;
@@ -147,7 +154,7 @@ void Customer ::update_customer() {
   cout << "Customer information successfully saved. " << endl;
 }
 void Customer ::display2() {
-  saleslimit = saleslimit;
+
   int size_email = email.size() + 2;
   int size_name = name.size() + 2;
   int len = size_email + size_name + 43;
@@ -176,7 +183,7 @@ void Customer ::search_customer() {
   string *phone = search_phone(this->phone);
   string *type = search_type(this->type);
 
-  
+
 
   if (cnic[0] == "x") {
     if (name[0] == "x") {
@@ -185,30 +192,28 @@ void Customer ::search_customer() {
           if (type[0] == "x") {
             cout << "Customer not found." << endl;
           } else {
-          
+
           }
         } else {
           Customer c1(phone[0], phone[1], phone[2], phone[3], phone[4]);
           c1.display2();
-         
+
         }
       } else {
         Customer c1(email[0], email[1], email[2], email[3], email[4]);
         c1.display2();
-       
+
       }
     } else {
       Customer c1(name[0], name[1], name[2], name[3], name[4]);
       c1.display2();
-    
+
     }
   } else {
     Customer c1(cnic[0], cnic[1], cnic[2], cnic[3], cnic[4]);
     c1.display2();
-    
-  }
 
-  
+  }
 
   delete[] cnic;
   delete[] name;
@@ -226,5 +231,5 @@ bool Customer :: check_saleslimit(double total)
     return true;
   else
    return false;
-    
+
 }
