@@ -27,7 +27,7 @@ public:
   string get_price();           //getters
   string get_availablequantity();
   string get_creation_date();
-  
+
   void add_new_item ();   //adds item info to file
   void display ();        //displays all attributes of item class
   void delete_item();   //deletes item from file
