@@ -209,6 +209,52 @@ int no_of_occur_of_type(string type) {   //returns no. of customers with type pa
   delete[] temp;
   return count;
 }
+int no_of_same_price (string price)
+{
+  string a,b;
+  string *temp;
+  int count = 0;
+  fstream fin;
+  fin.open("Items.txt");
+  while (!fin.eof()) 
+  {
+    getline(fin, a, ',');
+    getline(fin, b);
+    temp = splitstringitem(b);
+    if (temp[1] == price) 
+      count++;
+  }
+  return count;
+}
+string **all_entries_with_price(string price)
+{
+  string a,b;
+  string *temp;
+  int count = 0;
+  string **all = new string *[no_of_same_price(price)];
+  for (int i=0;i<no_of_same_price(price);i++)
+    {
+      all[i] = new string[4];
+    }
+  fstream fin;
+  fin.open("Items.txt");
+  while (!fin.eof()) 
+  {
+    getline(fin, a, ',');
+    getline(fin, b);
+    temp = splitstringitem(b);
+    if (temp[1] == price) 
+    {
+      all[count][0] = a;
+      all[count][1] = temp[0];
+      all[count][2] = temp[1];
+      all[count][3] = temp[2];
+      count++;
+    }
+    
+  }
+  return all;
+}
 string get_sales_limit(string type) {   //gets saleslimit for a customer type
   string saleslimit;
   if (type == "Silver")
@@ -321,7 +367,7 @@ string *search_price(string price) {     //This function takes an item's price a
   string *temp;
   string a;
   string b;
-  string c = ",";
+  
   fstream fin;
   fin.open("Items.txt");
   while (!fin.eof()) {
@@ -330,7 +376,7 @@ string *search_price(string price) {     //This function takes an item's price a
     temp = splitstringitem(b);
     if (temp[1] == price) {
       arr[0] = a;
-     // temp = splitstringitem(b);
+    
       for (int i = 1; i < 4; i++)
         arr[i] = temp[i - 1];
 
