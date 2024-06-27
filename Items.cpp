@@ -73,56 +73,63 @@ void Item :: add_new_item() {
     }
   }
 void Item ::search_item() {
-
+if (itemsku.empty())
+  itemsku = "N/A";
+if (description.empty())
+    description = "N/A";
+if (price.empty())
+    price = "N/A";
+if (availablequantity.empty())
+   availablequantity = "N/A";
+  
   string *sku = search_sku(this->itemsku);
   string *description = search_description(this->description);
   string *price = search_price(this->price);
   string *quantity = search_quantity(this->availablequantity);
 
 
-// for (int i=0;i<4;i++)
-// cout <<sku[i]<< "x";
-
-// cout <<endl;
-
-  if (sku[3] == "x") 
+  if (sku[0] != "x")
   {
-    if (description[0] == "x") 
-    {
-      if (price[0] == "x") 
-      {
-        if (quantity[0] == "x") 
-        {
-         // cout << "Item not found."<< endl;
-        } else 
-        {
-          Item c1(quantity[0], quantity[1], quantity[2], quantity[3]);
-          c1.display3();
-
-        }
-      } else 
-      {
-          Item  c1(price[0], price[1], price[2], price[3]);
-        c1.display3();
-
-      }
-    } else 
-    {
-      Item c1(description[0], description[1], description[2], description[3]);
-    
-      c1.display3();
-
-    }
-  } else 
-  {
-
-  Item c1(sku[0], sku[1], sku[2], sku[3]);
-  c1.display3();
-
+    Item i1(sku[0], sku[1], sku[2], sku[3]);
+    i1.display3();
   }
+  else if (description[0] != "x")
+  {
+     Item i1(description[0], description[1], description[2], description[3]);
+     i1.display3();
+  }
+  else if (price[0] != "x")
+  {
+    int no_items_same_price = no_of_same_price (price[2]);
+     if (no_items_same_price > 1)
+     {
+       cout << "hallo"<< endl;
+     //  cout << "There are " << no_items_same_price << " items with the same price." << endl;
+      string ** all_items = all_entries_with_price(price[2]);
 
 
-
+      Item j[no_items_same_price];
+      for (int i = 0; i < no_items_same_price; i++)
+        {
+          j[i].set_sku(all_items[i][0]);
+          j[i].set_description(all_items[i][1]);
+          j[i].set_price(all_items[i][2]);
+          j[i].set_availablequantity(all_items[i][3]);
+        }
+        for (int i = 0; i < no_items_same_price; i++)
+          j[i].display3();
+     }
+    else
+    {
+      Item i1(price[0], price[1], price[2], price[3]);
+      i1.display3();
+    }
+  }
+  else
+  {
+    cout << "No item found with enterred details. " << endl << endl;
+  }
+  cout << endl;
   delete[] sku;
   delete[] description;
   delete[] price;
