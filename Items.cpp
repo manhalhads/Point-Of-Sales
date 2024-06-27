@@ -103,8 +103,8 @@ if (availablequantity.empty())
     int no_items_same_price = no_of_same_price (price[2]);
      if (no_items_same_price > 1)
      {
-       cout << "hallo"<< endl;
-     //  cout << "There are " << no_items_same_price << " items with the same price." << endl;
+      
+      cout << "There are " << no_items_same_price << " items with the same price.\n";
       string ** all_items = all_entries_with_price(price[2]);
 
 
