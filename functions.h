@@ -12,6 +12,8 @@ string *search_email(string email);
 string *search_phone(string phone);
 string *search_type(string type);
 int no_of_occur_of_type(string type);
+int no_of_same_price (string price);
+string **all_entries_with_price(string price);
 string **all_occur_of_type(string type);
 string get_sales_limit(string type);
 int count_entries();
