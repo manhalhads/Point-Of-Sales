@@ -1,3 +1,4 @@
+
 #include "functions.h"
 int count_lines() {        //counts number of lines in customers file
   int count = 0;
@@ -237,8 +238,9 @@ int no_of_same_qty (string quantity)
     getline(fin, a, ',');
     getline(fin, b);
     temp = splitstringitem(b);
-    if (temp[2] == quantity) 
+    if (temp[2] == quantity)
       count++;
+
   }
   return count;
 }
