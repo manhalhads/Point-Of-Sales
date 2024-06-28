@@ -87,7 +87,10 @@ if (availablequantity.empty())
   string *price = search_price(this->price);
   string *quantity = search_quantity(this->availablequantity);
 
-
+int chap;
+  if (quantity[0]!= "x")
+    chap = 1;
+  
   if (sku[0] != "x")
   {
     Item i1(sku[0], sku[1], sku[2], sku[3]);
@@ -122,6 +125,33 @@ if (availablequantity.empty())
     else
     {
       Item i1(price[0], price[1], price[2], price[3]);
+      i1.display3();
+    }
+  }
+  else if (chap == 1)
+  {
+    int no_items_same_qty = no_of_same_qty (quantity[3]);
+     if (no_items_same_qty > 1)
+     {
+
+      cout << "There are " << no_items_same_qty << " items with the same quantity.\n";
+      string ** all_items = all_entries_with_qty(quantity[3]);
+
+
+      Item j[no_items_same_qty];
+      for (int i = 0; i < no_items_same_qty; i++)
+        {
+          j[i].set_sku(all_items[i][0]);
+          j[i].set_description(all_items[i][1]);
+          j[i].set_price(all_items[i][2]);
+          j[i].set_availablequantity(all_items[i][3]);
+        }
+        for (int i = 0; i < no_items_same_qty; i++)
+          j[i].display3();
+     }
+    else
+    {
+      Item i1(quantity[0], quantity[1], quantity[2], quantity[3]);
       i1.display3();
     }
   }
