@@ -226,6 +226,23 @@ int no_of_same_price (string price)
   }
   return count;
 }
+int no_of_same_qty (string quantity)
+{
+  string a,b;
+  string *temp;
+  int count = 0;
+  fstream fin;
+  fin.open("Items.txt");
+  while (!fin.eof()) 
+  {
+    getline(fin, a, ',');
+    getline(fin, b);
+    temp = splitstringitem(b);
+    if (temp[2] == quantity) 
+      count++;
+  }
+  return count;
+}
 string **all_entries_with_price(string price)
 {
   string a,b;
