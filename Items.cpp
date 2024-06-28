@@ -66,7 +66,7 @@ void Item :: add_new_item() {
     fstream fout;
     fout.open("Items.txt", ios::app);
     if (fout.is_open()) {
-      fout << itemsku << ", " << description << ", " << price;
+      fout << endl << itemsku << ", " << description << ", " << price;
       fout << ", " << availablequantity << endl;
       cout << "Item information successfully saved." << endl;
       fout.close();
