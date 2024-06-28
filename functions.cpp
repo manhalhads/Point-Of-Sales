@@ -1,4 +1,3 @@
-
 #include "functions.h"
 int count_lines() {        //counts number of lines in customers file
   int count = 0;
@@ -270,6 +269,36 @@ string **all_entries_with_price(string price)
     }
     
   }
+  return all;
+}
+string **all_entries_with_qty(string quantity)
+{
+  string a,b;
+  string *temp;
+  int count = 0;
+  string **all = new string *[no_of_same_qty(quantity)];
+  for (int i=0;i<no_of_same_qty(quantity);i++)
+    {
+      all[i] = new string[4];
+    }
+  fstream fin;
+  fin.open("Items.txt");
+  while (!fin.eof()) 
+  {
+    getline(fin, a, ',');
+    getline(fin, b);
+    temp = splitstringitem(b);
+    if (temp[2] == quantity) 
+    {
+      all[count][0] = a;
+      all[count][1] = temp[0];
+      all[count][2] = temp[1];
+      all[count][3] = temp[2];
+      count++;
+    }
+
+  }
+  fin.close();
   return all;
 }
 string get_sales_limit(string type) {   //gets saleslimit for a customer type
