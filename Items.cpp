@@ -87,10 +87,6 @@ if (availablequantity.empty())
   string *price = search_price(this->price);
   string *quantity = search_quantity(this->availablequantity);
 
-int chap;
-  if (quantity[0]!= "x")
-    chap = 1;
-  
   if (sku[0] != "x")
   {
     Item i1(sku[0], sku[1], sku[2], sku[3]);
@@ -128,7 +124,7 @@ int chap;
       i1.display3();
     }
   }
-  else if (chap == 1)
+  else if (quantity[0]!= "x")
   {
     int no_items_same_qty = no_of_same_qty (quantity[3]);
      if (no_items_same_qty > 1)
