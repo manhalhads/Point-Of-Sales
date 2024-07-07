@@ -17,7 +17,7 @@ To install and use this project, follow these steps:
 3. Compile the C++ files using a C++ compiler, such as g++ or clang++.
 4. Run the program.
 
-##License
+# License
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
